@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hstrejoluna/markdown": ["libs/markdown/src/index.ts"]
+      "@hstrejoluna/markdown": ["libs/markdown/src/index.ts"],
+      "@hstrejoluna/shared/mdx-elements": [
+        "libs/shared/mdx-elements/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -7,10 +7,15 @@ import {
   renderMarkdown,
 } from '@hstrejoluna/markdown';
 import { MDXRemote } from 'next-mdx-remote';
+import { Youtube } from '@hstrejoluna/shared/mdx-elements';
 
 /* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
+}
+
+const mdxElements = {
+  Youtube,
 }
 
 const POSTS_PATH = join(process.cwd(), '_articles');
@@ -23,7 +28,7 @@ export function Article({ frontMatter, html }) {
         <div>by {frontMatter.author.name}</div>
       </article>
       <hr />
-      <MDXRemote {...html} />
+      <MDXRemote {...html} components={mdxElements} />
     </div>
   );
 }
