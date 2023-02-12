@@ -2,7 +2,10 @@ import { readdirSync } from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
-import { getParsedFileContentBySlug } from '@hstrejoluna/markdown';
+import {
+  getParsedFileContentBySlug,
+  renderMarkdown,
+} from '@hstrejoluna/markdown';
 
 /* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
@@ -12,7 +15,6 @@ export interface ArticleProps extends ParsedUrlQuery {
 const POSTS_PATH = join(process.cwd(), '_articles');
 
 export function Article(props: ArticleProps) {
-  c;
   return (
     <div>
       <h1>Visiting, {props.slug}</h1>
