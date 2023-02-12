@@ -1,10 +1,14 @@
+import { readdirSync } from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 
 /* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
 }
+
+const POSTS_PATH = join(process.cwd(), '_articles');
 
 export function Article(props: ArticleProps) {
   return (
@@ -27,19 +31,12 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
 };
 
 export const getStaticPaths: GetStaticPaths<ArticleProps> = async () => {
+  const paths = readdirSync(POSTS_PATH)
+    .map((path) => path.replace(/\.mdx?$/, ''))
+    .map((slug) => ({ params: { slug } }));
+
   return {
-    paths: [
-      {
-        params: {
-          slug: 'page1',
-        },
-      },
-      {
-        params: {
-          slug: 'page2',
-        },
-      },
-    ],
+    paths,
     fallback: false,
   };
 };
