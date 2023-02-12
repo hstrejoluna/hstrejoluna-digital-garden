@@ -6,6 +6,7 @@ import {
   getParsedFileContentBySlug,
   renderMarkdown,
 } from '@hstrejoluna/markdown';
+import { MDXRemote } from 'next-mdx-remote';
 
 /* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
@@ -14,10 +15,15 @@ export interface ArticleProps extends ParsedUrlQuery {
 
 const POSTS_PATH = join(process.cwd(), '_articles');
 
-export function Article(props: ArticleProps) {
+export function Article({ frontMatter, html }) {
   return (
-    <div>
-      <h1>Visiting, {props.slug}</h1>
+    <div className="m-6">
+      <article className="prose prose-lg">
+        <h1>{frontMatter.title}</h1>
+        <div>by {frontMatter.author.name}</div>
+      </article>
+      <hr />
+      <MDXRemote {...html} />
     </div>
   );
 }
@@ -33,10 +39,12 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
     POSTS_PATH
   );
 
-  const renderHTML = renderMarkdown(articleMarkdownContent);
+  // 2. convert markdown content => HTML
+  const renderHTML = await renderMarkdown(articleMarkdownContent.content);
   return {
     props: {
-      slug: params.slug,
+      frontMatter: articleMarkdownContent.frontMatter,
+      html: renderHTML,
     },
   };
 };
