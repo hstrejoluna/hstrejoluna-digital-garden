@@ -12,7 +12,6 @@
         "root": "apps/hstrejoluna-site",
         "outputPath": "dist/apps/hstrejoluna-site",
         "postcssConfig": "apps/hstrejoluna-site/postcss.config.js"
-
       },
       "configurations": {
         "development": {
