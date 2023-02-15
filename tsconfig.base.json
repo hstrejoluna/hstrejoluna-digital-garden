@@ -21,7 +21,8 @@
       ],
       "@hstrejoluna/shared/mdx-elements/*": [
         "libs/shared/mdx-elements/src/lib/*"
-      ]
+      ],
+      "@hstrejoluna/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
