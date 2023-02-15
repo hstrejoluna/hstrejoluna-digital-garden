@@ -9,7 +9,12 @@ export interface YoutubeProps {
 export function Youtube(props: YoutubeProps) {
   return (
     <div>
-      <iframe src={`https://www.youtube.com/embed/GT332PtGwcM`} width="100%" height="500px" title={props.title}></iframe>
+      <iframe
+        src={`https://www.youtube.com/embed/GT332PtGwcM`}
+        width="100%"
+        height="500px"
+        title={props.title}
+      ></iframe>
     </div>
   );
 }

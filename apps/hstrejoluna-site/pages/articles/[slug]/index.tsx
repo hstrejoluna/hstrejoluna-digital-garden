@@ -7,7 +7,7 @@ import {
   renderMarkdown,
 } from '@hstrejoluna/markdown';
 import { MDXRemote } from 'next-mdx-remote';
-import { Youtube } from '@hstrejoluna/shared/mdx-elements';
+import { Youtube, CustomLink } from '@hstrejoluna/shared/mdx-elements';
 
 /* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
@@ -16,6 +16,7 @@ export interface ArticleProps extends ParsedUrlQuery {
 
 const mdxElements = {
   Youtube,
+  a: CustomLink,
 }
 
 const POSTS_PATH = join(process.cwd(), '_articles');
