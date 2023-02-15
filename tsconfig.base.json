@@ -19,8 +19,9 @@
       "@hstrejoluna/shared/mdx-elements": [
         "libs/shared/mdx-elements/src/index.ts"
       ],
-      "@hstrejoluna/shared/mdx-elements/*": ["libs/shared/mdx-elements/src/lib/*"]
-
+      "@hstrejoluna/shared/mdx-elements/*": [
+        "libs/shared/mdx-elements/src/lib/*"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

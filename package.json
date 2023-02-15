@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
     "@nrwl/cypress": "15.6.3",
+    "@nrwl/devkit": "15.6.3",
     "@nrwl/eslint-plugin-nx": "15.6.3",
     "@nrwl/jest": "15.6.3",
     "@nrwl/js": "15.6.3",
@@ -34,7 +35,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@testing-library/react": "13.4.0",
     "@types/jest": "28.1.1",
-    "@types/node": "^18.13.0",
+    "@types/node": "latest",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
