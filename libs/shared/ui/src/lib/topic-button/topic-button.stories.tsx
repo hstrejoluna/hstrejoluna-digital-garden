@@ -7,9 +7,13 @@ const Story: ComponentMeta<typeof TopicButton> = {
 };
 export default Story;
 
-const Template: ComponentStory<typeof TopicButton> = (args) => (
-  <TopicButton {...args} />
-);
+const Template: ComponentStory<typeof TopicButton> = (args) => {
+  return (
+    <div className="bg-slate-500">
+      <TopicButton {...args} />
+    </div>
+  );
+};
 
 export const Primary = Template.bind({});
 Primary.args = {};
