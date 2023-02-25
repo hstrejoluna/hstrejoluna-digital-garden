@@ -1,29 +1,28 @@
 import { readdirSync } from 'fs';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
-import dynamic from 'next/dynamic';
-import {
-  getParsedFileContentBySlug,
-  renderMarkdown,
-} from '@hstrejoluna/markdown';
+import { getParsedFileContentBySlug, renderMarkdown } from '@hstrejoluna/markdown';
 import { MDXRemote } from 'next-mdx-remote';
+import dynamic from 'next/dynamic';
 
-/* eslint-disable-next-line */
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
 }
 
 const mdxElements = {
-  Youtube: dynamic(async () => {
-    return await import('@hstrejoluna/shared/mdx-elements/youtube/');
-  }),
+  Youtube: dynamic(
+    () => import('@hstrejoluna/shared/mdx-elements/youtube')
+  ),
   // a: CustomLink,
 };
 
-const POSTS_PATH = join(process.cwd(), process.env.articleMarkdownPath );
+const POSTS_PATH = join(process.cwd(), process.env.articleMarkdownPath);
 
-export function Article({ frontMatter, html }) {
+export function Article({
+  frontMatter,
+  html,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className="m-6">
       <article className="prose prose-lg">
@@ -36,11 +35,7 @@ export function Article({ frontMatter, html }) {
   );
 }
 
-export const getStaticProps: GetStaticProps<ArticleProps> = async ({
-  params,
-}: {
-  params: ArticleProps;
-}) => {
+export const getStaticProps = async ({ params }: { params: ArticleProps }) => {
   // 1. parse the content of our markdown and separate it into frontmatter and content
   const articleMarkdownContent = getParsedFileContentBySlug(
     params.slug,
@@ -49,6 +44,7 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
 
   // 2. convert markdown content => HTML
   const renderHTML = await renderMarkdown(articleMarkdownContent.content);
+
   return {
     props: {
       frontMatter: articleMarkdownContent.frontMatter,

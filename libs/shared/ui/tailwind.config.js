@@ -1,18 +1,18 @@
-const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind');
+const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const { join } = require('path');
 
 module.exports = {
-  presets: [require('../../../tailwind-workspace-preset.js')],
-  purge: [
-    join(__dirname, '../src/**/*.{js,ts,jsx,tsx}'),
+  mode: 'jit',
+  content: [
+    join(
+      __dirname,
+      '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+    ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {},
-  },
   plugins: [],
+  presets: [require('../../../tailwind-workspace-preset.js')],
 };
