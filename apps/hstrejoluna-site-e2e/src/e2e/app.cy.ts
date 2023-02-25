@@ -1,13 +1,11 @@
-import { getGreeting } from '../support/app.po';
-
 describe('hstrejoluna-site', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => cy.visit('/articles/hs-trejo-luna-dg'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should render the title of the article', () => {
+    cy.get('h1').should('contain', 'HS Trejo Luna DG');
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome hstrejoluna-site');
+  it('should properly render the embedded Youtube component', () => {
+    cy.get('iframe').should('be.visible');
   });
 });
