@@ -25,7 +25,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "hstrejoluna-site:build",
-        "dev": true
+        "dev": true,
+        "postcssConfig": "apps/hstrejoluna-site/postcss.config.js"
       },
       "configurations": {
         "development": {
